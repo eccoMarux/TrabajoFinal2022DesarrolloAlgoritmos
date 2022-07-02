@@ -6,10 +6,10 @@ import java.util.Scanner;
 
 public class metodosOrdenamiento {
     public static void main(String[] args) {
-        Ciudad[] arregloCiudadesS = new Ciudad[100];
-        Ciudad[] arregloCiudadesM = new Ciudad[100];
-        Ciudad[] arregloCiudadesLR = new Ciudad[100];
         int longitudArreglo = 100;
+        Ciudad[] arregloCiudadesS = new Ciudad[longitudArreglo];
+        Ciudad[] arregloCiudadesM = new Ciudad[longitudArreglo];
+        Ciudad[] arregloCiudadesLR = new Ciudad[longitudArreglo];
         cargarArregloCiudades(arregloCiudadesS, longitudArreglo);
         cargarArregloCiudades(arregloCiudadesM, longitudArreglo);
         cargarArregloCiudades(arregloCiudadesLR, longitudArreglo);
