@@ -85,7 +85,7 @@ public class Ciudad {
         //Dado un arreglo por parametro, retorna un arrglo copiado del original.
         int length = arregloCiudad.length;
         Ciudad[] copia = new Ciudad[length];
-        System.arraycopy(arregloCiudad, 0, copia, 0, length);
+        System.arraycopy(arregloCiudad, 0, copia, 0, length); //copia el arreglo en otro.
         return copia;
     }
 
@@ -182,6 +182,37 @@ public class Ciudad {
             arr[k++] = arrAux[i++];
         }
     }
-    
 
+    public static Ciudad[] listaCiudadesRepLetra(Ciudad[] arreglo) {
+        //Dado un arreglo de ciudades, guarda en un nuevo arreglo las ciudades que repitan letras en su nombre.
+        Ciudad[] arrLista = new Ciudad[arreglo.length];
+        int j = 0;
+        for (int i = 0; i < arreglo.length; i++) {
+            if (repiteLetraPalabra(arreglo[i].getNombreCiudad())) {
+                arrLista[j] = arreglo[i];
+                j++;
+            }
+        }
+        return arrLista;
+    }
+
+    private static boolean repiteLetraPalabra(String palabra) {
+        //Retorna verdadero o falso si es que se repite alguna letra en la palabra.
+        boolean repite = false;
+        String palabraModificada = palabra.replaceAll(" ", "").toLowerCase(); //Quito espacios y dejo en minuscula
+        int i = 0, j, longitudPalabra = palabraModificada.length();
+        char letraEvaluada;
+        while (i <= longitudPalabra - 1 && !repite) { // Marca la letra a evaluar hasta la anteultima posicion.
+            letraEvaluada = palabraModificada.charAt(i);
+            j = i + 1;
+            while (j < longitudPalabra && !repite) { // Evalua si se repite la letra en el resto de la palabra. Busca secuencialmente.
+                if (letraEvaluada == palabraModificada.charAt(j)) {
+                    repite = true;
+                }
+                j++;
+            }
+            i++;
+        }
+        return repite;
+    }
 }

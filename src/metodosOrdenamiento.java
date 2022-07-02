@@ -3,26 +3,39 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
+
 public class metodosOrdenamiento {
     public static void main(String[] args) {
-        Ciudad[] arregloCiudades = new Ciudad[100];
-        int longitudArreglo = arregloCiudades.length;
-        cargarArregloCiudades(arregloCiudades, longitudArreglo); 
+        Ciudad[] arregloCiudadesS = new Ciudad[100];
+        Ciudad[] arregloCiudadesM = new Ciudad[100];
+        Ciudad[] arregloCiudadesLR = new Ciudad[100];
+        int longitudArreglo = 100;
+        cargarArregloCiudades(arregloCiudadesS, longitudArreglo);
+        cargarArregloCiudades(arregloCiudadesM, longitudArreglo);
+        cargarArregloCiudades(arregloCiudadesLR, longitudArreglo);
 
-        //Prueba empirica de los tiempos de ejecucion.
-        //Para Ordenamiento por Seleccion.
+        /** Prueba empirica de los tiempos de ejecucion. **/
+        // Para Ordenamiento por Seleccion.
         long inicioS = System.nanoTime();
-        Ciudad.arrOrdenadoSeleccion(arregloCiudades, 'd');
+        Ciudad.arrOrdenadoSeleccion(arregloCiudadesS, 'a');
         long finS = System.nanoTime();
-        long totalS = (finS - inicioS)/10000;
-        System.out.println("Tiempo total para Seleccion: "+ totalS+" milisegundos.");
+        long totalS = (finS - inicioS) / 10000;
+        System.out.println("Tiempo total para Seleccion: " + totalS + " milisegundos.");
 
-        //Para ordenamiento por MergeSort.
+        // Para ordenamiento por MergeSort.
         long inicioM = System.nanoTime();
-        Ciudad.mergeSort(arregloCiudades, 0, longitudArreglo-1);
+        Ciudad.mergeSort(arregloCiudadesM, 0, longitudArreglo - 1);
         long finM = System.nanoTime();
-        long totalM = (finM - inicioM)/10000;
-        System.out.println("Tiempo total para MergeSort: "+ totalM+" milisegundos.");
+        long totalM = (finM - inicioM) / 10000;
+        System.out.println("Tiempo total para MergeSort: " + totalM + " milisegundos.");
+
+        // Para listar ciudades con letras repetidas.
+        long inicioLR = System.nanoTime();
+        Ciudad.listaCiudadesRepLetra(arregloCiudadesLR);
+        long finLR = System.nanoTime();
+        long totalLR = (finLR - inicioLR) / 10000;
+        System.out.println("Tiempo total para Listar Ciudades con Letra Repetida: " + totalLR + " milisegundos.");
+
     }
 
     public static void cargarArregloCiudades(Ciudad[] arrCiudad, int longitudArr) {
@@ -48,12 +61,18 @@ public class metodosOrdenamiento {
     }
 
     public static void leerArreglo(Ciudad[] arr) {
-        //Lee un arreglo unidimensional.
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print("Posicion: " + i + " | ");
-            System.out.println(arr[i].toString());
+        // Lee un arreglo unidimensional.
+        boolean repite=true;
+        int i=0;
+        while(i<arr.length && repite){
+            if (arr[i] != null) {
+                System.out.print("Posicion: " + i + " | ");
+                System.out.println(arr[i].toString());
+                i++;
+            }else{
+                repite = false;
+            }
+            
         }
     }
-
-
 }

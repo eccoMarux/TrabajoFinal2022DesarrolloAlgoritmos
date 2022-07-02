@@ -19,7 +19,7 @@ public class testCiudad {
         Scanner sc = new Scanner(System.in);
         do {
             System.out.println(
-                    "Ingrese la opción: \n1) Ver el arreglo. \n2) Copiar y ordenar el arreglo. \n3) Ver abreviatura de alguna ciudad. \nCualquier otro para terminar");
+                    "Ingrese la opción: \n1) Ver el arreglo. \n2) Copiar y ordenar el arreglo. \n3) Ver abreviatura de alguna ciudad. \n4) Ver lista de ciudades con letras repetidas. \nX) Cualquier otro para terminar");
             respuesta = sc.nextInt();
 
             switch (respuesta) {
@@ -44,7 +44,7 @@ public class testCiudad {
                     otraRep = sc.next().charAt(0);
                     break;
                 case 3:
-                    Ciudad.arrOrdenadoSeleccion(arreglo, 'a');
+                    Ciudad.mergeSort(arreglo, 0, arreglo.length-1);;
                     leerArreglo(arreglo);
                     System.out.println("Ingrese la posicion de la ciudad que quiere ver la abreviatura.");
                     posArr = sc.nextInt();
@@ -55,12 +55,12 @@ public class testCiudad {
                     break;
                 case 4:
                     System.out.println("A contunuacion se enlistaran las ciudades que tengan al menos dos letras iguales en su nombre:");
-                    //logica
+                    leerArreglo(Ciudad.listaCiudadesRepLetra(arreglo));
                     System.out.println("Desea realizar otra funcion? s para si, cualquier otra para terminar.");
                     otraRep = sc.next().charAt(0);
                     break;
                 default:
-                    System.out.println("Fin del programa.");
+                    System.out.println("No se ha seleccionado ninguna opcion de menú.");
             }
         } while (otraRep == 's');
         System.out.println("Fin del programa.");
@@ -90,10 +90,17 @@ public class testCiudad {
     }
 
     public static void leerArreglo(Ciudad[] arr) {
-        //Lee un arreglo unidimensional.
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print("Posicion: " + i + " | ");
-            System.out.println(arr[i].toString());
+        // Lee un arreglo unidimensional.
+        boolean repite=true;
+        int i=0;
+        while(i<arr.length && repite){
+            if (arr[i] != null) {
+                System.out.print("Posicion: " + i + " | ");
+                System.out.println(arr[i].toString());
+                i++;
+            }else{
+                repite = false;
+            }  
         }
     }
 }
