@@ -58,7 +58,9 @@ public class Ciudad {
     public int compareToCiudad(Ciudad otraCiudad) {
         return this.nombreCiudad.compareTo(otraCiudad.getNombreCiudad());
     }
-
+    public int compareTo(Ciudad otraCiudad) {
+        return this.nombreCiudad.compareTo(otraCiudad.getNombreCiudad());
+    }
     public String toString() {
         String cadena = "Ciudad: " + this.getNombreCiudad() + " | Poblacion: " + this.getPoblacion() + " | Latitud: "
                 + this.getLatitud() + " | Longitud: " + this.getLongitud();
@@ -90,18 +92,19 @@ public class Ciudad {
     }
 
     public static void arrOrdenadoSeleccion(Ciudad[] arreglo, char tipoOrden) {
+        //arregla el arreglo por seleccion de dos valores y los intercambia segun cual es menor.
         int i, longitud = arreglo.length, posCiudadMenor;
         if (tipoOrden == 'a') {
             for (i = 0; i < longitud; i++) {
                 posCiudadMenor = buscarPosMenorAscendente(arreglo, i);
-                if (arreglo[posCiudadMenor].compareToCiudad(arreglo[i]) < 0) {
+                if (arreglo[posCiudadMenor].compareTo(arreglo[i]) < 0) {
                     intercambiar(arreglo, posCiudadMenor, i);
                 }
             }
         }else{
             for(i = longitud-1; i>=0; i--){
                 posCiudadMenor = buscarPosMenorDescendente(arreglo, i);
-                if (arreglo[posCiudadMenor].compareToCiudad(arreglo[i]) < 0) {
+                if (arreglo[posCiudadMenor].compareTo(arreglo[i]) < 0) {
                     intercambiar(arreglo, posCiudadMenor, i);
                 }
             }
@@ -112,7 +115,7 @@ public class Ciudad {
         Ciudad menorCiudad = new Ciudad("ZZZZzzzzzzzzzzzzzzz");
         int posicion = i;
         for (int j = i; j < arreglo.length; j++) { //Variacion en el for
-            if (arreglo[j].compareToCiudad(menorCiudad) < 0) {
+            if (arreglo[j].compareTo(menorCiudad) < 0) {
                 menorCiudad = arreglo[j];
                 posicion = j;
             }
@@ -124,7 +127,7 @@ public class Ciudad {
         Ciudad menorCiudad = new Ciudad("ZZZZzzzzzzzzzzzzzzz");
         int posicion = i;
         for (int j = 0; j <=i; j++) { //Variacion en el for
-            if (arreglo[j].compareToCiudad(menorCiudad) < 0) {
+            if (arreglo[j].compareTo(menorCiudad) < 0) {
                 menorCiudad = arreglo[j];
                 posicion = j;
             }
@@ -167,7 +170,7 @@ public class Ciudad {
         k = izq;
 
         while (i <= medio && j <= der) {// copia el siguiente elemento más grande
-            if (arrAux[i].compareToCiudad(arrAux[j]) < 0) { //evalua cual va primero lexicograficamente. 
+            if (arrAux[i].compareTo(arrAux[j]) < 0) { //evalua cual va primero lexicograficamente. 
                 arr[k] = arrAux[i];
                 k++;
                 i++;

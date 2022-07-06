@@ -19,21 +19,21 @@ public class metodosOrdenamiento {
         long inicioS = System.nanoTime();
         Ciudad.arrOrdenadoSeleccion(arregloCiudadesS, 'a');
         long finS = System.nanoTime();
-        long totalS = (finS - inicioS) / 10000;
+        long totalS = (finS - inicioS);
         System.out.println("Tiempo total para Seleccion: " + totalS + " milisegundos.");
 
         // Para ordenamiento por MergeSort.
         long inicioM = System.nanoTime();
         Ciudad.mergeSort(arregloCiudadesM, 0, longitudArreglo - 1);
         long finM = System.nanoTime();
-        long totalM = (finM - inicioM) / 10000;
+        long totalM = (finM - inicioM);
         System.out.println("Tiempo total para MergeSort: " + totalM + " milisegundos.");
 
         // Para listar ciudades con letras repetidas.
         long inicioLR = System.nanoTime();
         Ciudad.listaCiudadesRepLetra(arregloCiudadesLR);
         long finLR = System.nanoTime();
-        long totalLR = (finLR - inicioLR) / 10000;
+        long totalLR = (finLR - inicioLR);
         System.out.println("Tiempo total para Listar Ciudades con Letra Repetida: " + totalLR + " milisegundos.");
 
     }
